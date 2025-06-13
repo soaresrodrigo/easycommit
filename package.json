@@ -1,0 +1,23 @@
+{
+  "name": "easycommit",
+  "version": "1.0.0",
+  "description": "CLI para gerar mensagens de commit com ajuda da OpenAI",
+  "main": "bin/easycommit.js",
+  "bin": {
+    "easycommit": "./bin/easycommit.js"
+  },
+  "keywords": [
+    "git",
+    "commit",
+    "gpt",
+    "openai",
+    "cli"
+  ],
+  "author": "Rodrigo Soares @soaresrodrigo",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "inquirer": "^8.2.6",
+    "openai": "^4.104.0"
+  }
+}
