@@ -60,10 +60,3 @@ easycommit "Refactoring payment module"
 
 ### Suggested Repo Tags:  
 `git` `commit` `ai` `openai` `deepseek` `productivity` `developer-tools`  
-
-Would you like me to add:  
-- A "Contributing" section?  
-- Screenshot examples of the CLI in action?  
-- Badges (npm version, license, etc.)?  
-
-Let me know how you'd like to customize it further! 🚀
