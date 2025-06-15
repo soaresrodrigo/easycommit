@@ -1,19 +1,20 @@
 {
-  "name": "easycommit",
+  "name": "gocommit",
   "version": "1.0.0",
-  "description": "CLI para gerar mensagens de commit com ajuda da OpenAI",
-  "main": "bin/easycommit.js",
+  "description": "CLI to generate commit messages with help from OpenAI",
+  "main": "bin/gocommit.js",
   "bin": {
-    "easycommit": "./bin/easycommit.js"
+    "gocommit": "./bin/gocommit.js"
   },
   "keywords": [
     "git",
     "commit",
     "gpt",
+    "deepseek",
     "openai",
     "cli"
   ],
-  "author": "Rodrigo Soares @soaresrodrigo",
+  "author": "Rodrigo Soares",
   "license": "MIT",
   "type": "module",
   "dependencies": {
