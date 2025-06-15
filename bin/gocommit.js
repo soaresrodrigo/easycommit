@@ -17,7 +17,7 @@ import {
 
   if (resetKey) {
     clearApiKey();
-    console.log("🔄 Configurações removidas. Será solicitada uma nova chave.");
+    console.log("🔄 Configuration removed. A new key will be requested.");
   }
 
   let apiKey = getApiKey();
@@ -26,20 +26,20 @@ import {
   if (!apiKey || resetKey) {
     const { provider, apiKey: enteredKey } = await inquirer.prompt([
       {
-        type: "list",
-        name: "provider",
-        message: "Escolha a API de IA:",
-        choices: [
-          { name: "OpenAI (GPT-4)", value: "openai" },
-          { name: "DeepSeek Chat", value: "deepseek" },
-        ],
+      type: "list",
+      name: "provider",
+      message: "Choose the AI API provider:",
+      choices: [
+        { name: "OpenAI (GPT-4)", value: "openai" },
+        { name: "DeepSeek Chat", value: "deepseek" },
+      ],
       },
       {
-        type: "password",
-        name: "apiKey",
-        message: (answers) => `Informe sua ${answers.provider} API Key:`,
-        mask: "*",
-        validate: (input) => !!input || "⚠️ A chave não pode estar vazia!",
+      type: "password",
+      name: "apiKey",
+      message: (answers) => `Enter your ${answers.provider} API Key:`,
+      mask: "*",
+      validate: (input) => !!input || "⚠️ The key cannot be empty!",
       },
     ]);
 
@@ -49,7 +49,7 @@ import {
     if (!saveApiKey(apiKey, provider)) {
       process.exit(1);
     }
-    console.log("✅ Configurações salvas com sucesso!");
+    console.log("✅ Settings saved successfully!");
   }
 
   const aiClient = new OpenAI({
@@ -70,37 +70,37 @@ import {
     } catch (error) {
       console.error(`❌ Erro na API ${apiProvider}:`, error.message);
       if (error.status === 402) {
-        console.log("👉 Verifique seu saldo em: https://platform.deepseek.com");
+        console.log("👉 Check your balance at: https://platform.deepseek.com");
       }
       return false;
     }
   }
 
   if (!(await validateApiKey())) {
-    console.log('\n🔧 Dica: Use "--reset-key" para configurar uma nova chave.');
+    console.log('\n🔧 Tip: Use "--reset-key" to set up a new API key.');
     process.exit(1);
   }
 
   const diff = execSync("git diff --cached", { encoding: "utf-8" });
   if (!diff.trim()) {
-    console.log('⚠️ Nenhuma alteração para commitar. Use "git add" primeiro.');
+    console.log('⚠️ No changes to commit. Use "git add" first.');
     return;
   }
 
   try {
     const prompt = `
-      Você é um assistente que gera mensagens de commit claras e concisas.
-      - Use um emoji no início (ex: 🐛, ✨, 🔥)
-      - Escreva em inglês
-      - Inclua prefixos como "feat:", "fix:" quando aplicável
+      You are an assistant that generates clear and concise commit messages.
+      - Start with an emoji (e.g., 🐛, ✨, 🔥)
+      - Write in English
+      - Include prefixes like "feat:", "fix:" when applicable
 
-      Contexto adicional: "${userContext}"
+      Additional context: "${userContext}"
 
-      Gere 10 opções baseadas nestas alterações:
+      Generate 5 options based on these changes:
 
       ${diff}
 
-      Apenas liste as mensagens numeradas (1. 2. 3...).
+      Only list the numbered messages (1. 2. 3...).
     `;
 
     const completion = await aiClient.chat.completions.create({
@@ -116,18 +116,18 @@ import {
 
     const { selected } = await inquirer.prompt([
       {
-        type: "list",
-        name: "selected",
-        message: "Escolha a mensagem de commit:",
-        choices,
-        pageSize: 5,
+      type: "list",
+      name: "selected",
+      message: "Choose the commit message:",
+      choices,
+      pageSize: 5,
       },
     ]);
 
-    console.log(`\n🚀 Commitando: "${selected}"`);
+    console.log(`\n🚀 Committing: "${selected}"`);
     execSync(`git commit -m "${selected}"`, { stdio: "inherit" });
   } catch (error) {
-    console.error("❌ Erro ao gerar commits:", error.message);
+    console.error("❌ Error generating commit messages:", error.message);
     process.exit(1);
   }
 })();
