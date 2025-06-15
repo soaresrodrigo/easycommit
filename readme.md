@@ -6,7 +6,7 @@ Here's a polished GitHub project description in English for your **GoCommit** to
 
 **Stop writing boring commit messages!** Let AI generate clear, concise, and expressive Git commits for you – complete with emojis and conventional prefixes. Supports **OpenAI** and **DeepSeek** APIs.  
 
-![Demo GIF](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDF5dWU3b2VtZ3JqY2V6Z2JtY3B6dWJ6Y2RlZzZ1bmZqZ2ZxZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9IgG50Fb7Mi0prBC/giphy.gif) *(placeholder for your demo GIF)*  
+![Demo GIF](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDF5dWU3b2VtZ3JqY2V6Z2JtY3B6dWJ6Y2RlZzZ1bmZqZ2ZxZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9IgG50Fb7Mi0prBC/giphy.gif)  
 
 ## ✨ Features  
 
