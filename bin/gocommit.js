@@ -75,7 +75,7 @@ import {
       return false;
     }
   }
-
+  console.log('Preparing commit...');
   if (!(await validateApiKey())) {
     console.log('\n🔧 Tip: Use "--reset-key" to set up a new API key.');
     process.exit(1);
@@ -109,6 +109,8 @@ import {
       max_tokens: 300,
     });
 
+    console.clear();
+
     const choices = completion.choices[0].message.content
       .split("\n")
       .map((line) => line.replace(/^\d+\.\s*/, "").trim())
@@ -123,7 +125,7 @@ import {
       pageSize: 5,
       },
     ]);
-
+    
     console.log(`\n🚀 Committing: "${selected}"`);
     execSync(`git commit -m "${selected}"`, { stdio: "inherit" });
   } catch (error) {
